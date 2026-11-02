@@ -1,1 +1,40 @@
 @import "tailwindcss";
+
+@theme {
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-jakarta), system-ui, sans-serif;
+
+  --color-forest-bg: #040d08;
+  --color-forest-surface: #06150e;
+  --color-forest-card: #071911;
+  --color-forest-card-border: #143525;
+  --color-forest-accent: #23583e;
+
+  --color-gold-primary: #e8c87a;
+  --color-gold-hover: #f3da96;
+  --color-gold-muted: #d4b572;
+  --color-gold-border: rgba(232, 200, 122, 0.35);
+}
+
+.font-serif {
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+
+.font-sans {
+  font-family: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+}
+
+/* Subtle custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #040d08;
+}
+::-webkit-scrollbar-thumb {
+  background: #143525;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #23583e;
+}
