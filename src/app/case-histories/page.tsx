@@ -9,7 +9,7 @@ import ConsultationModal from "@/components/ConsultationModal";
 export default function CaseHistoriesPage() {
   const [consultationModalOpen, setConsultationModalOpen] = useState(false);
 
-  const deepDivePoints = [
+  const initialFivePoints = [
     {
       number: "01",
       title: "Executive Role & Strategic Authority",
@@ -376,8 +376,8 @@ export default function CaseHistoriesPage() {
             </div>
           </section>
 
-          {/* 5. The 10-Point Architectural Deep Dive (Pixel-accurate to design) */}
-          <section id="deep-dive" className="pt-4">
+          {/* 5. The 10-Point Architectural Deep Dive */}
+          <section id="deep-dive" className="pt-4 space-y-4">
             {/* Section Header */}
             <div className="max-w-3xl mb-8">
               <span className="text-[11px] font-semibold tracking-[0.2em] text-[#C5A566] uppercase block mb-2">
@@ -391,43 +391,369 @@ export default function CaseHistoriesPage() {
               </p>
             </div>
 
-            {/* List of Deep Dive Cards */}
-            <div className="space-y-4">
-              {deepDivePoints.map((item) => (
-                <div
-                  key={item.number}
-                  className="rounded-xl bg-[#061810]/95 border border-[#153825] p-5 sm:p-6 shadow-md hover:border-[#1d5236] transition-all"
-                >
-                  <div className="flex items-start gap-4 sm:gap-6">
-                    {/* Left: Number + Vertical Line */}
-                    <div className="flex flex-col items-center shrink-0 w-8 sm:w-10 pt-0.5">
-                      <span className="font-serif text-2xl sm:text-[28px] text-[#E8C87A] font-normal leading-none">
-                        {item.number}
+            {/* Points 01 to 05 */}
+            {initialFivePoints.map((item) => (
+              <div
+                key={item.number}
+                className="rounded-xl bg-[#061810]/95 border border-[#153825] p-5 sm:p-6 shadow-md hover:border-[#1d5236] transition-all"
+              >
+                <div className="flex items-start gap-4 sm:gap-6">
+                  {/* Left: Number + Vertical Line */}
+                  <div className="flex flex-col items-center shrink-0 w-8 sm:w-10 pt-0.5">
+                    <span className="font-serif text-2xl sm:text-[28px] text-[#E8C87A] font-normal leading-none">
+                      {item.number}
+                    </span>
+                    <div className="w-px h-8 sm:h-10 bg-[#163e2a] mt-2.5" />
+                  </div>
+
+                  {/* Right: Content */}
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-3">
+                      <h3 className="font-serif text-lg sm:text-xl text-[#FAF7F0] font-normal">
+                        {item.title}
+                      </h3>
+                      <span className="px-2.5 py-0.5 rounded bg-[#04120a] border border-[#143524] text-[#C5A566] text-[10px] font-semibold tracking-wider uppercase shrink-0">
+                        {item.badge}
                       </span>
-                      <div className="w-px h-8 sm:h-10 bg-[#163e2a] mt-2.5" />
                     </div>
 
-                    {/* Right: Content */}
-                    <div className="flex-1 min-w-0">
-                      {/* Title & Badge Row */}
-                      <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-3">
-                        <h3 className="font-serif text-lg sm:text-xl text-[#FAF7F0] font-normal">
-                          {item.title}
-                        </h3>
-                        <span className="px-2.5 py-0.5 rounded bg-[#04120a] border border-[#143524] text-[#C5A566] text-[10px] font-semibold tracking-wider uppercase shrink-0">
-                          {item.badge}
-                        </span>
-                      </div>
+                    <p className="text-xs sm:text-[13px] text-[#8EAFA0] font-light leading-relaxed mt-2.5">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
 
-                      {/* Description */}
-                      <p className="text-xs sm:text-[13px] text-[#8EAFA0] font-light leading-relaxed mt-2.5">
-                        {item.description}
+            {/* Point 06: Systems & Workflows Implemented */}
+            <div className="rounded-xl bg-[#061810]/95 border border-[#153825] p-5 sm:p-6 shadow-md hover:border-[#1d5236] transition-all">
+              <div className="flex items-start gap-4 sm:gap-6">
+                <div className="flex flex-col items-center shrink-0 w-8 sm:w-10 pt-0.5">
+                  <span className="font-serif text-2xl sm:text-[28px] text-[#E8C87A] font-normal leading-none">
+                    06
+                  </span>
+                  <div className="w-px h-8 sm:h-10 bg-[#163e2a] mt-2.5" />
+                </div>
+
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-3">
+                    <h3 className="font-serif text-lg sm:text-xl text-[#FAF7F0] font-normal">
+                      Systems &amp; Workflows Implemented
+                    </h3>
+                    <span className="px-2.5 py-0.5 rounded bg-[#04120a] border border-[#143524] text-[#C5A566] text-[10px] font-semibold tracking-wider uppercase shrink-0">
+                      ARCHITECTURAL ARTIFACTS
+                    </span>
+                  </div>
+
+                  <p className="text-xs sm:text-[13px] text-[#8EAFA0] font-light leading-relaxed mt-2.5 mb-4">
+                    Engineered durable business artifacts, codifying organizational behavior into standardized modules:
+                  </p>
+
+                  {/* 4 Artifact Modules */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {/* Module 1 */}
+                    <div className="rounded-lg bg-[#04120a] border border-[#133522] p-3.5 flex items-start gap-3">
+                      <div className="w-7 h-7 rounded bg-[#0a2317] border border-[#18482f] flex items-center justify-center text-[#E8C87A] shrink-0 mt-0.5">
+                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="text-xs sm:text-[13px] font-semibold text-[#FAF7F0] mb-0.5">
+                          Formalized HR Codex
+                        </h4>
+                        <p className="text-xs text-[#8EAFA0] font-light leading-relaxed">
+                          Complete policy baseline covering conduct, leave, and accountability.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Module 2 */}
+                    <div className="rounded-lg bg-[#04120a] border border-[#133522] p-3.5 flex items-start gap-3">
+                      <div className="w-7 h-7 rounded bg-[#0a2317] border border-[#18482f] flex items-center justify-center text-[#E8C87A] shrink-0 mt-0.5">
+                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="text-xs sm:text-[13px] font-semibold text-[#FAF7F0] mb-0.5">
+                          Standardized Escalation Workflows
+                        </h4>
+                        <p className="text-xs text-[#8EAFA0] font-light leading-relaxed">
+                          Immutable path for grievances and conflict resolution.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Module 3 */}
+                    <div className="rounded-lg bg-[#04120a] border border-[#133522] p-3.5 flex items-start gap-3">
+                      <div className="w-7 h-7 rounded bg-[#0a2317] border border-[#18482f] flex items-center justify-center text-[#E8C87A] shrink-0 mt-0.5">
+                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="text-xs sm:text-[13px] font-semibold text-[#FAF7F0] mb-0.5">
+                          Unified Performance Scorecards
+                        </h4>
+                        <p className="text-xs text-[#8EAFA0] font-light leading-relaxed">
+                          Objective metric indices linked to departmental goals.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Module 4 */}
+                    <div className="rounded-lg bg-[#04120a] border border-[#133522] p-3.5 flex items-start gap-3">
+                      <div className="w-7 h-7 rounded bg-[#0a2317] border border-[#18482f] flex items-center justify-center text-[#E8C87A] shrink-0 mt-0.5">
+                        <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.75">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                      </div>
+                      <div>
+                        <h4 className="text-xs sm:text-[13px] font-semibold text-[#FAF7F0] mb-0.5">
+                          Cross-Departmental HR Analytics
+                        </h4>
+                        <p className="text-xs text-[#8EAFA0] font-light leading-relaxed">
+                          Transparent dashboards monitoring turnover and ramp-up rate.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Point 07: Verified Outcomes & Evidence */}
+            <div className="rounded-xl bg-[#061810]/95 border border-[#153825] p-5 sm:p-6 shadow-md hover:border-[#1d5236] transition-all">
+              <div className="flex items-start gap-4 sm:gap-6">
+                <div className="flex flex-col items-center shrink-0 w-8 sm:w-10 pt-0.5">
+                  <span className="font-serif text-2xl sm:text-[28px] text-[#E8C87A] font-normal leading-none">
+                    07
+                  </span>
+                  <div className="w-px h-8 sm:h-10 bg-[#163e2a] mt-2.5" />
+                </div>
+
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-3">
+                    <h3 className="font-serif text-lg sm:text-xl text-[#FAF7F0] font-normal">
+                      Verified Outcomes &amp; Evidence
+                    </h3>
+                    <span className="px-2.5 py-0.5 rounded bg-[#04120a] border border-[#143524] text-[#C5A566] text-[10px] font-semibold tracking-wider uppercase shrink-0">
+                      AUDITED IMPACT
+                    </span>
+                  </div>
+
+                  <p className="text-xs sm:text-[13px] text-[#8EAFA0] font-light leading-relaxed mt-2.5 mb-4">
+                    Documented reduction in onboarding ramp-up time, measurable increase in employee tenure stability, and zero statutory compliance infractions during regional regulatory inspection reviews.
+                  </p>
+
+                  {/* 3 Metric Cards */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+                    {/* Metric 1 */}
+                    <div className="rounded-lg bg-[#04120a] border border-[#133522] p-3.5">
+                      <span className="block text-[10px] font-medium tracking-[0.14em] text-[#7A9E8D] uppercase mb-1">
+                        RAMP-UP SPEED
+                      </span>
+                      <p className="font-serif text-lg sm:text-xl text-[#E8C87A] font-normal leading-tight mb-1">
+                        Accelerated
+                      </p>
+                      <p className="text-xs text-[#8EAFA0] font-light">
+                        30-day milestone compliance
+                      </p>
+                    </div>
+
+                    {/* Metric 2 */}
+                    <div className="rounded-lg bg-[#04120a] border border-[#133522] p-3.5">
+                      <span className="block text-[10px] font-medium tracking-[0.14em] text-[#7A9E8D] uppercase mb-1">
+                        TENURE COHORTS
+                      </span>
+                      <p className="font-serif text-lg sm:text-xl text-[#E8C87A] font-normal leading-tight mb-1">
+                        Stabilized
+                      </p>
+                      <p className="text-xs text-[#8EAFA0] font-light">
+                        Predictable core talent retention
+                      </p>
+                    </div>
+
+                    {/* Metric 3 */}
+                    <div className="rounded-lg bg-[#04120a] border border-[#133522] p-3.5">
+                      <span className="block text-[10px] font-medium tracking-[0.14em] text-[#7A9E8D] uppercase mb-1">
+                        STATUTORY INFRACTIONS
+                      </span>
+                      <p className="font-serif text-lg sm:text-xl text-[#E8C87A] font-normal leading-tight mb-1">
+                        Zero (0)
+                      </p>
+                      <p className="text-xs text-[#8EAFA0] font-light">
+                        Full audit verification
                       </p>
                     </div>
                   </div>
                 </div>
-              ))}
+              </div>
             </div>
+
+            {/* Point 08: Connected Bizenra Practice Pillars */}
+            <div className="rounded-xl bg-[#061810]/95 border border-[#153825] p-5 sm:p-6 shadow-md hover:border-[#1d5236] transition-all">
+              <div className="flex items-start gap-4 sm:gap-6">
+                <div className="flex flex-col items-center shrink-0 w-8 sm:w-10 pt-0.5">
+                  <span className="font-serif text-2xl sm:text-[28px] text-[#E8C87A] font-normal leading-none">
+                    08
+                  </span>
+                  <div className="w-px h-8 sm:h-10 bg-[#163e2a] mt-2.5" />
+                </div>
+
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-3 mb-4">
+                    <h3 className="font-serif text-lg sm:text-xl text-[#FAF7F0] font-normal">
+                      Connected Bizenra Practice Pillars
+                    </h3>
+                    <span className="px-2.5 py-0.5 rounded bg-[#04120a] border border-[#143524] text-[#C5A566] text-[10px] font-semibold tracking-wider uppercase shrink-0">
+                      METHODOLOGY ALIGNMENT
+                    </span>
+                  </div>
+
+                  {/* 2 Pillar Action Cards */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <Link
+                      href="/services"
+                      className="rounded-lg bg-[#04120a] border border-[#133522] p-4 flex items-center justify-between hover:border-[#1d5236] transition-all group"
+                    >
+                      <div>
+                        <span className="block text-[10px] font-medium tracking-[0.14em] text-[#7A9E8D] uppercase mb-1">
+                          PRACTICE AREA
+                        </span>
+                        <span className="text-sm sm:text-[14.5px] font-semibold text-[#FAF7F0] group-hover:text-[#E8C87A] transition-colors">
+                          HR Management &amp; People Infrastructure
+                        </span>
+                      </div>
+                      <span className="text-sm font-semibold text-[#E8C87A] group-hover:translate-x-1 transition-transform">
+                        &rarr;
+                      </span>
+                    </Link>
+
+                    <Link
+                      href="/services"
+                      className="rounded-lg bg-[#04120a] border border-[#133522] p-4 flex items-center justify-between hover:border-[#1d5236] transition-all group"
+                    >
+                      <div>
+                        <span className="block text-[10px] font-medium tracking-[0.14em] text-[#7A9E8D] uppercase mb-1">
+                          PRACTICE AREA
+                        </span>
+                        <span className="text-sm sm:text-[14.5px] font-semibold text-[#FAF7F0] group-hover:text-[#E8C87A] transition-colors">
+                          Business Operations &amp; Workflow Standardization
+                        </span>
+                      </div>
+                      <span className="text-sm font-semibold text-[#E8C87A] group-hover:translate-x-1 transition-transform">
+                        &rarr;
+                      </span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Point 09: Cross-Referenced Case Histories */}
+            <div className="rounded-xl bg-[#061810]/95 border border-[#153825] p-5 sm:p-6 shadow-md hover:border-[#1d5236] transition-all">
+              <div className="flex items-start gap-4 sm:gap-6">
+                <div className="flex flex-col items-center shrink-0 w-8 sm:w-10 pt-0.5">
+                  <span className="font-serif text-2xl sm:text-[28px] text-[#E8C87A] font-normal leading-none">
+                    09
+                  </span>
+                  <div className="w-px h-8 sm:h-10 bg-[#163e2a] mt-2.5" />
+                </div>
+
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-3">
+                    <h3 className="font-serif text-lg sm:text-xl text-[#FAF7F0] font-normal">
+                      Cross-Referenced Case Histories
+                    </h3>
+                    <span className="px-2.5 py-0.5 rounded bg-[#04120a] border border-[#143524] text-[#C5A566] text-[10px] font-semibold tracking-wider uppercase shrink-0">
+                      ADJACENT MANDATES
+                    </span>
+                  </div>
+
+                  <p className="text-xs sm:text-[13px] text-[#8EAFA0] font-light leading-relaxed mt-2.5 mb-4">
+                    Similar structural architecture implemented across real estate and operational client portfolios:
+                  </p>
+
+                  {/* 2 Cross Reference Cards */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {/* Card 1 */}
+                    <div className="rounded-lg bg-[#04120a] border border-[#133522] p-4">
+                      <div className="flex items-center justify-between gap-2 mb-1.5">
+                        <span className="text-xs font-semibold text-[#E8C87A]">
+                          Aeon &amp; Trisl
+                        </span>
+                        <span className="text-[11px] text-[#7A9E8D]">
+                          Real Estate Advisory
+                        </span>
+                      </div>
+                      <h4 className="text-sm sm:text-[14.5px] font-semibold text-[#FAF7F0] mb-1.5">
+                        CRM &amp; Listing Governance
+                      </h4>
+                      <p className="text-xs text-[#8EAFA0] font-light leading-relaxed">
+                        Standardized sales team reporting pipelines and asset compliance verification.
+                      </p>
+                    </div>
+
+                    {/* Card 2 */}
+                    <div className="rounded-lg bg-[#04120a] border border-[#133522] p-4">
+                      <div className="flex items-center justify-between gap-2 mb-1.5">
+                        <span className="text-xs font-semibold text-[#E8C87A]">
+                          KAM Associates
+                        </span>
+                        <span className="text-[11px] text-[#7A9E8D]">
+                          Operational Design
+                        </span>
+                      </div>
+                      <h4 className="text-sm sm:text-[14.5px] font-semibold text-[#FAF7F0] mb-1.5">
+                        Cross-Team Alignment
+                      </h4>
+                      <p className="text-xs text-[#8EAFA0] font-light leading-relaxed">
+                        Inter-departmental operating frameworks and structured accountability reviews.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Point 10: Actionable Advisory Handoff */}
+            <div className="rounded-xl bg-[#061810]/95 border border-[#153825] p-5 sm:p-6 shadow-md hover:border-[#1d5236] transition-all">
+              <div className="flex items-start gap-4 sm:gap-6">
+                <div className="flex flex-col items-center shrink-0 w-8 sm:w-10 pt-0.5">
+                  <span className="font-serif text-2xl sm:text-[28px] text-[#E8C87A] font-normal leading-none">
+                    10
+                  </span>
+                  <div className="w-px h-8 sm:h-10 bg-[#163e2a] mt-2.5" />
+                </div>
+
+                <div className="flex-1 min-w-0">
+                  <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-3">
+                    <h3 className="font-serif text-lg sm:text-xl text-[#FAF7F0] font-normal">
+                      Actionable Advisory Handoff
+                    </h3>
+                    <span className="px-2.5 py-0.5 rounded bg-[#04120a] border border-[#143524] text-[#34d399] text-[10px] font-semibold tracking-wider uppercase shrink-0">
+                      IMMEDIATE DIRECTIVE
+                    </span>
+                  </div>
+
+                  <p className="text-xs sm:text-[13px] text-[#8EAFA0] font-light leading-relaxed mt-2.5 mb-5 max-w-2xl">
+                    Experiencing similar organizational friction or talent churn? Transition from informal practices to an institutional people governance architecture designed for sustained corporate velocity.
+                  </p>
+
+                  <button
+                    type="button"
+                    onClick={() => setConsultationModalOpen(true)}
+                    className="cursor-pointer px-5 py-2.5 rounded-lg bg-[#E8C87A] text-[#05170F] font-semibold text-xs sm:text-sm hover:bg-[#DEBE7F] active:scale-[0.99] transition-all shadow-md inline-flex items-center gap-2"
+                  >
+                    <span>Discuss a Similar People Challenge</span>
+                    <span>&rarr;</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
           </section>
 
         </div>
@@ -440,7 +766,7 @@ export default function CaseHistoriesPage() {
       <ConsultationModal
         isOpen={consultationModalOpen}
         onClose={() => setConsultationModalOpen(false)}
-        initialService="Case History Review Mandate"
+        initialService="People Architecture Consultation"
       />
     </div>
   );
