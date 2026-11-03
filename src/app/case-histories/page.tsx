@@ -9,6 +9,44 @@ import ConsultationModal from "@/components/ConsultationModal";
 export default function CaseHistoriesPage() {
   const [consultationModalOpen, setConsultationModalOpen] = useState(false);
 
+  const deepDivePoints = [
+    {
+      number: "01",
+      title: "Executive Role & Strategic Authority",
+      badge: "MANDATE SCOPE",
+      description:
+        "Spearheaded organization-wide human capital development, managing end-to-end recruitment pipelines, executive compliance, and labor standards across diverse real estate and commercial operations. Established direct reporting cadence with executive leadership to insulate human asset strategy from short-cycle disruptions.",
+    },
+    {
+      number: "02",
+      title: "Commercial & Operational Context",
+      badge: "ECOSYSTEM STATE",
+      description:
+        "A multi-unit enterprise in high-demand cycles experiencing rapid workforce scaling without standardized role scorecards or digital employee logs. Commercial teams were operating under asynchronous expectations, leading to departmental siloing and variable operational velocity.",
+    },
+    {
+      number: "03",
+      title: "Structural Challenge",
+      badge: "FRICTION NODES",
+      description:
+        "Disparate onboarding procedures across departments, uncalibrated performance reviews leading to retention friction, and unrecorded employee grievance protocols. The absence of an immutable personnel trail amplified compliance vulnerabilities and introduced erratic administrative drag during quarterly review cycles.",
+    },
+    {
+      number: "04",
+      title: "Scope of Work Executed",
+      badge: "INTERVENTION SCOPE",
+      description:
+        "Comprehensive drafting of corporate HR SOPs, statutory labor-law compliance audits, implementation of 30/60/90-day onboarding milestones, and administrative coordination across real estate transactions, asset management units, and internal business back-offices.",
+    },
+    {
+      number: "05",
+      title: "Methodology & Steps Taken",
+      badge: "EXECUTION CADENCE",
+      description:
+        "Conducted deep departmental talent audits, established standard hiring rubrics to eliminate bias, phased the complete transition from paper logs to centralized digital personnel records, and conducted executive KPI alignment workshops for general managers and team leads.",
+    },
+  ];
+
   return (
     <div className="min-h-screen flex flex-col bg-transparent text-[#E8EFEA]">
       {/* 1. Global Navigation */}
@@ -160,7 +198,7 @@ export default function CaseHistoriesPage() {
               {/* Bottom Explore Link */}
               <div className="pt-3 border-t border-[#143524]">
                 <a
-                  href="#governance-matrix"
+                  href="#deep-dive"
                   className="text-xs font-semibold text-[#FAF7F0] hover:text-[#E8C87A] transition-colors flex items-center justify-between group"
                 >
                   <span>Explore 10-Point Architectural Record</span>
@@ -338,13 +376,67 @@ export default function CaseHistoriesPage() {
             </div>
           </section>
 
+          {/* 5. The 10-Point Architectural Deep Dive (Pixel-accurate to design) */}
+          <section id="deep-dive" className="pt-4">
+            {/* Section Header */}
+            <div className="max-w-3xl mb-8">
+              <span className="text-[11px] font-semibold tracking-[0.2em] text-[#C5A566] uppercase block mb-2">
+                PROCEDURAL RECORD
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl text-[#FAF7F0] font-normal tracking-tight mb-3">
+                The 10-Point Architectural Deep Dive
+              </h2>
+              <p className="text-xs sm:text-sm text-[#A2BEAF] font-light leading-relaxed max-w-2xl">
+                A granular breakdown of the organizational conditions, systems interventions, statutory protocols, and permanent operational frameworks engineered during this mandate.
+              </p>
+            </div>
+
+            {/* List of Deep Dive Cards */}
+            <div className="space-y-4">
+              {deepDivePoints.map((item) => (
+                <div
+                  key={item.number}
+                  className="rounded-xl bg-[#061810]/95 border border-[#153825] p-5 sm:p-6 shadow-md hover:border-[#1d5236] transition-all"
+                >
+                  <div className="flex items-start gap-4 sm:gap-6">
+                    {/* Left: Number + Vertical Line */}
+                    <div className="flex flex-col items-center shrink-0 w-8 sm:w-10 pt-0.5">
+                      <span className="font-serif text-2xl sm:text-[28px] text-[#E8C87A] font-normal leading-none">
+                        {item.number}
+                      </span>
+                      <div className="w-px h-8 sm:h-10 bg-[#163e2a] mt-2.5" />
+                    </div>
+
+                    {/* Right: Content */}
+                    <div className="flex-1 min-w-0">
+                      {/* Title & Badge Row */}
+                      <div className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-3">
+                        <h3 className="font-serif text-lg sm:text-xl text-[#FAF7F0] font-normal">
+                          {item.title}
+                        </h3>
+                        <span className="px-2.5 py-0.5 rounded bg-[#04120a] border border-[#143524] text-[#C5A566] text-[10px] font-semibold tracking-wider uppercase shrink-0">
+                          {item.badge}
+                        </span>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-xs sm:text-[13px] text-[#8EAFA0] font-light leading-relaxed mt-2.5">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
         </div>
       </main>
 
-      {/* 5. Global Footer */}
+      {/* 6. Global Footer */}
       <Footer onOpenConsultation={() => setConsultationModalOpen(true)} />
 
-      {/* 6. Consultation Modal */}
+      {/* 7. Consultation Modal */}
       <ConsultationModal
         isOpen={consultationModalOpen}
         onClose={() => setConsultationModalOpen(false)}
