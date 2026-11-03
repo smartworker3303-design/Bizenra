@@ -9,6 +9,7 @@ export default function ContactPage() {
   const [activeTab, setActiveTab] = useState<"form" | "preview">("form");
   const [submitted, setSubmitted] = useState(false);
   const [consultationModalOpen, setConsultationModalOpen] = useState(false);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   const [form, setForm] = useState({
     fullName: "",
@@ -26,6 +27,34 @@ export default function ContactPage() {
     setSubmitted(true);
   };
 
+  const faqItems = [
+    {
+      question: "What is the format and duration of the initial discovery consultation?",
+      answer:
+        "Initial discovery consultations are structured as 45-to-60-minute confidential working sessions conducted via secure video conference. Led by a Senior Strategic Partner, we focus on identifying root-cause operational friction, tech stack fragmentation, and reporting bottlenecks with zero sales ambiguity.",
+    },
+    {
+      question: "Do we need to prepare proprietary financial data or technical documents beforehand?",
+      answer:
+        "No prior document transmission is mandatory for the initial exploratory session. A high-level overview of your current head count, software stack, and primary friction points is sufficient. Detailed P&L statements, chart of accounts, or architectural diagrams are only requested under executed mutual NDA during formal scoping.",
+    },
+    {
+      question: "How quickly can Bizenra commence an advisory engagement or diagnostic sprint?",
+      answer:
+        "Following mutual alignment and formal scope execution, our diagnostic sprints typically mobilize within 5 to 7 business days. We deploy immediately into structured stakeholder interviews and data tracing to minimize operational downtime.",
+    },
+    {
+      question: "Does Bizenra provide fractional executive leadership (Fractional COO/CFO)?",
+      answer:
+        "Yes. In addition to targeted project sprints and architectural audits, Bizenra deploys embedded Fractional Heads of Operations and Fractional CFOs on 90-to-180-day retained governance mandates to oversee implementation, manage vendor handoffs, and mentor internal leadership.",
+    },
+    {
+      question: "What fee structures does Bizenra support?",
+      answer:
+        "We operate on transparent, fixed-scope project milestones for diagnostic sprints and system implementations, and monthly retained advisory governance for fractional executive mandates. We do not charge variable hourly fees or open-ended consulting retainers.",
+    },
+  ];
+
   return (
     <div className="min-h-screen flex flex-col bg-transparent text-[#E8EFEA]">
       {/* 1. Global Navigation */}
@@ -33,6 +62,7 @@ export default function ContactPage() {
 
       <main className="flex-1 pt-8 sm:pt-12 pb-16 sm:pb-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
           {/* 2. Hero Section (Pixel-accurate to screenshot) */}
           <section className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 pb-4">
             {/* Left Hero Content */}
@@ -89,11 +119,11 @@ export default function ContactPage() {
             </div>
           </section>
 
-          {/* 3. Main Outer Card Container */}
+          {/* 3. Main Outer Card Container (Advisory Desk + Booking Form) */}
           <div className="mt-8 sm:mt-10 rounded-2xl sm:rounded-3xl border border-[#153a27]/80 bg-[#04140c]/45 p-5 sm:p-7 lg:p-9 backdrop-blur-md shadow-2xl">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
               
-              {/* LEFT COLUMN: Channels + Methodology + Quote */}
+              {/* LEFT COLUMN: Channels + Methodology + Quote + Developer Spec */}
               <div className="lg:col-span-5 space-y-6">
                 
                 {/* 1. Direct Verified Channels */}
@@ -273,10 +303,37 @@ export default function ContactPage() {
                   </div>
                 </div>
 
+                {/* 4. Developer Handoff Specification (Pixel-accurate to design) */}
+                <div className="rounded-xl bg-[#061810] border border-[#153825] p-4 shadow-md">
+                  <div className="flex items-center gap-2 mb-2">
+                    <div className="w-5 h-5 rounded bg-[#0a2317] border border-[#18482f] flex items-center justify-center text-[#C5A566]">
+                      <svg
+                        className="w-3 h-3"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+                        />
+                      </svg>
+                    </div>
+                    <span className="text-[10px] font-semibold tracking-[0.16em] text-[#C5A566] uppercase">
+                      DEVELOPER HANDOFF SPECIFICATION
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-[#7A9E8D] leading-relaxed font-light">
+                    Calendar scheduling, CRM ingestion (HubSpot / Salesforce), and email dispatch endpoints require backend webhook configuration. Ensure payload conforms to institutional security standards.
+                  </p>
+                </div>
+
               </div>
 
               {/* RIGHT COLUMN: Consultation Booking Form */}
-              <div className="lg:col-span-7">
+              <div className="lg:col-span-7" id="booking-form">
                 <div className="rounded-xl bg-[#061810] border border-[#153825] p-6 sm:p-8 lg:p-9 shadow-xl relative">
                   
                   {/* Card Header & Tab Switcher */}
@@ -791,13 +848,196 @@ export default function ContactPage() {
 
             </div>
           </div>
+
+          {/* 4. The Bizenra Engagement Commitment (Pixel-accurate to design) */}
+          <section className="mt-16 sm:mt-20">
+            {/* Header */}
+            <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+              <span className="text-[11px] font-semibold tracking-[0.2em] text-[#C5A566] uppercase block mb-2">
+                RIGOROUS STEWARDSHIP
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-[40px] text-[#FAF7F0] font-normal tracking-tight mb-3">
+                The Bizenra Engagement Commitment
+              </h2>
+              <p className="text-xs sm:text-sm text-[#A2BEAF] font-light leading-relaxed max-w-2xl mx-auto">
+                Advisory without academic abstraction. We structure our consultations as actionable working sessions designed to surface measurable leverage.
+              </p>
+            </div>
+
+            {/* 3 Pillars Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {/* Card 1: Institutional Confidentiality */}
+              <div className="rounded-xl bg-[#061810] border border-[#153825] p-6 sm:p-7 shadow-lg hover:border-[#1d5236] transition-all">
+                <div className="w-10 h-10 rounded-lg bg-[#0a2317] border border-[#18482f] flex items-center justify-center text-[#E8C87A] mb-5">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="1.75"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="font-serif text-xl sm:text-[22px] text-[#FAF7F0] font-normal mb-3">
+                  Institutional Confidentiality
+                </h3>
+                <p className="text-xs sm:text-[13px] text-[#8EAFA0] leading-relaxed font-light">
+                  All discovery metrics, systems configurations, and P&amp;L discussions remain protected under strict non-disclosure safeguards from the moment of form dispatch.
+                </p>
+              </div>
+
+              {/* Card 2: Direct Architectural Fit */}
+              <div className="rounded-xl bg-[#061810] border border-[#153825] p-6 sm:p-7 shadow-lg hover:border-[#1d5236] transition-all">
+                <div className="w-10 h-10 rounded-lg bg-[#0a2317] border border-[#18482f] flex items-center justify-center text-[#E8C87A] mb-5">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="1.75"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                    />
+                  </svg>
+                </div>
+                <h3 className="font-serif text-xl sm:text-[22px] text-[#FAF7F0] font-normal mb-3">
+                  Direct Architectural Fit
+                </h3>
+                <p className="text-xs sm:text-[13px] text-[#8EAFA0] leading-relaxed font-light">
+                  We do not apply cookie-cutter enterprise templates. Every workflow recommendation is calibrated against your exact head count, tech stack, and margin profile.
+                </p>
+              </div>
+
+              {/* Card 3: Immediate Technical Clarity */}
+              <div className="rounded-xl bg-[#061810] border border-[#153825] p-6 sm:p-7 shadow-lg hover:border-[#1d5236] transition-all">
+                <div className="w-10 h-10 rounded-lg bg-[#0a2317] border border-[#18482f] flex items-center justify-center text-[#E8C87A] mb-5">
+                  <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="1.75"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="font-serif text-xl sm:text-[22px] text-[#FAF7F0] font-normal mb-3">
+                  Immediate Technical Clarity
+                </h3>
+                <p className="text-xs sm:text-[13px] text-[#8EAFA0] leading-relaxed font-light">
+                  Walk away from our initial briefing with clear identification of software redundancies, manual reconciliation errors, and immediate quick-win opportunities.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* 5. Frequently Addressed Questions (Consultation & Mandate FAQ) */}
+          <section className="mt-16 sm:mt-20">
+            {/* Header with right link */}
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
+              <div>
+                <span className="text-[11px] font-semibold tracking-[0.2em] text-[#C5A566] uppercase block mb-2">
+                  FREQUENTLY ADDRESSED QUESTIONS
+                </span>
+                <h2 className="font-serif text-3xl sm:text-4xl text-[#FAF7F0] font-normal tracking-tight mb-2">
+                  Consultation &amp; Mandate FAQ
+                </h2>
+                <p className="text-xs sm:text-sm text-[#A2BEAF] font-light leading-relaxed max-w-xl">
+                  Essential details regarding session formats, preliminary document preparation, and engagement structure.
+                </p>
+              </div>
+
+              <a
+                href="mailto:advisory@bizenra.com"
+                className="text-xs text-[#7A9E8D] hover:text-[#FAF7F0] transition-colors flex items-center gap-1.5 self-start md:self-end font-medium pb-1"
+              >
+                <span>Have an unlisted question?</span>
+                <span>&rarr;</span>
+              </a>
+            </div>
+
+            {/* Accordion List */}
+            <div className="space-y-3">
+              {faqItems.map((item, index) => {
+                const isOpen = openFaqIndex === index;
+                return (
+                  <div
+                    key={index}
+                    className="rounded-xl bg-[#061810] border border-[#153825] overflow-hidden transition-all hover:border-[#1d5236]"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setOpenFaqIndex(isOpen ? null : index)}
+                      className="cursor-pointer w-full px-5 sm:px-6 py-4 sm:py-5 flex items-center justify-between gap-4 text-left"
+                      aria-expanded={isOpen}
+                    >
+                      <span className="text-sm sm:text-[15px] font-semibold text-[#FAF7F0]">
+                        {item.question}
+                      </span>
+                      <span className="text-[#8EAFA0] text-lg font-light shrink-0">
+                        {isOpen ? "−" : "+"}
+                      </span>
+                    </button>
+
+                    {isOpen && (
+                      <div className="px-5 sm:px-6 pb-5 pt-1 text-xs sm:text-[13px] text-[#8EAFA0] font-light leading-relaxed border-t border-[#133522]/80">
+                        {item.answer}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* 6. Ready to institutionalize your operations? CTA Banner */}
+          <section className="mt-16 sm:mt-20">
+            <div className="rounded-xl bg-[#061810] border border-[#153825] p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-xl">
+              <div>
+                <h3 className="font-serif text-2xl sm:text-[26px] text-[#FAF7F0] font-normal mb-1.5">
+                  Ready to institutionalize your operations?
+                </h3>
+                <p className="text-xs sm:text-sm text-[#A2BEAF] font-light">
+                  Direct consultation booking remains open for Q2 advisory cohorts.
+                </p>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => {
+                  const formEl = document.getElementById("booking-form");
+                  if (formEl) {
+                    formEl.scrollIntoView({ behavior: "smooth" });
+                  } else {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }
+                }}
+                className="cursor-pointer px-6 py-2.5 rounded-lg bg-[#C5A566] text-[#071c13] text-xs sm:text-sm font-semibold hover:bg-[#DEBE7F] active:scale-[0.99] transition-all shadow-md shrink-0"
+              >
+                Return to Booking Form
+              </button>
+            </div>
+          </section>
+
         </div>
       </main>
 
-      {/* 4. Global Footer */}
+      {/* 7. Global Footer with floating Advisory Buddy */}
       <Footer onOpenConsultation={() => setConsultationModalOpen(true)} />
 
-      {/* 5. Consultation Modal */}
+      {/* 8. Consultation Modal */}
       <ConsultationModal
         isOpen={consultationModalOpen}
         onClose={() => setConsultationModalOpen(false)}

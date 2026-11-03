@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 
 interface FooterProps {
@@ -7,6 +8,8 @@ interface FooterProps {
 }
 
 export default function Footer({ onOpenConsultation }: FooterProps) {
+  const [bubbleOpen, setBubbleOpen] = useState(true);
+
   const practiceLinks = [
     { label: "Operations & Workflow", href: "/services" },
     { label: "Financial Reporting", href: "/services" },
@@ -52,21 +55,24 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
             </p>
 
             <div className="pt-2">
-              <div className="inline-block px-3 py-1.5 rounded-md bg-[#051C11] border border-[#1A4B31] text-[#6E9580] text-[11px] font-medium tracking-wide">
+              <span className="inline-block px-3 py-1 rounded bg-[#071911] border border-[#18442F] text-[11px] font-medium tracking-wide text-[#8EA396]">
                 Corporate Advisory &amp; Operations
-              </div>
+              </span>
             </div>
           </div>
 
-          {/* Column 2: PRACTICE AREAS */}
-          <div className="lg:col-span-3">
-            <h4 className="text-xs uppercase tracking-widest text-[#FFFFFF] font-semibold mb-4">
+          {/* Column 2: Practice Areas */}
+          <div className="lg:col-span-3 space-y-3">
+            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C5A566] mb-4">
               PRACTICE AREAS
             </h4>
-            <ul className="space-y-2.5 text-xs sm:text-[13px] font-light">
+            <ul className="space-y-2 text-xs sm:text-[13px]">
               {practiceLinks.map((item, idx) => (
                 <li key={idx}>
-                  <Link href={item.href} className="hover:text-[#E8C87A] transition-colors">
+                  <Link
+                    href={item.href}
+                    className="hover:text-[#FAF7F0] transition-colors"
+                  >
                     {item.label}
                   </Link>
                 </li>
@@ -74,15 +80,18 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
             </ul>
           </div>
 
-          {/* Column 3: CORPORATE */}
-          <div className="lg:col-span-2">
-            <h4 className="text-xs uppercase tracking-widest text-[#FFFFFF] font-semibold mb-4">
+          {/* Column 3: Corporate */}
+          <div className="lg:col-span-2 space-y-3">
+            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C5A566] mb-4">
               CORPORATE
             </h4>
-            <ul className="space-y-2.5 text-xs sm:text-[13px] font-light">
+            <ul className="space-y-2 text-xs sm:text-[13px]">
               {corporateLinks.map((item, idx) => (
                 <li key={idx}>
-                  <Link href={item.href} className="hover:text-[#E8C87A] transition-colors">
+                  <Link
+                    href={item.href}
+                    className="hover:text-[#FAF7F0] transition-colors"
+                  >
                     {item.label}
                   </Link>
                 </li>
@@ -90,43 +99,39 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
             </ul>
           </div>
 
-          {/* Column 4: ADVISORY HQ */}
-          <div className="lg:col-span-3 space-y-2.5 text-xs sm:text-[13px]">
-            <h4 className="text-xs uppercase tracking-widest text-[#FFFFFF] font-semibold mb-4">
+          {/* Column 4: Advisory HQ */}
+          <div className="lg:col-span-3 space-y-4">
+            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-[#C5A566] mb-4">
               ADVISORY HQ
             </h4>
-            <p className="text-[#A0B4A8] font-light leading-relaxed">
-              Corporate Practice Group
-            </p>
-            <p className="text-[#A0B4A8] font-light leading-relaxed">
-              Institutional Engagements &amp; Inquiries
-            </p>
-            <p className="pt-1">
-              <a
-                href="mailto:inquiries@bizenra.com"
-                className="text-[#E8C87A] hover:underline transition-colors"
-              >
-                inquiries@bizenra.com
-              </a>
-            </p>
+            <div className="space-y-2 text-xs sm:text-[13px] text-[#A0B4A8]">
+              <p>Corporate Practice Group</p>
+              <p>Institutional Engagements &amp; Inquiries</p>
+              <p>
+                <a
+                  href="mailto:inquiries@bizenra.com"
+                  className="text-[#E8C87A] hover:underline"
+                >
+                  inquiries@bizenra.com
+                </a>
+              </p>
+            </div>
 
-            <div className="pt-3">
+            <div className="pt-2">
               <button
-                type="button"
                 onClick={handleAction}
-                className="cursor-pointer group inline-flex items-center gap-1.5 font-semibold text-[#E8C87A] hover:text-[#FFFFFF] transition-colors text-xs sm:text-[13px]"
+                type="button"
+                className="cursor-pointer text-xs font-medium text-[#FAF7F0] hover:text-[#E8C87A] transition-colors flex items-center gap-1.5"
               >
                 <span>Schedule Briefing</span>
-                <span className="transition-transform duration-200 group-hover:translate-x-1">
-                  &rarr;
-                </span>
+                <span>&rarr;</span>
               </button>
             </div>
           </div>
         </div>
 
-        {/* Strict Compliance Note */}
-        <div className="pt-8 pb-6 border-t border-[#0F291C]">
+        {/* Regulatory & Institutional Notice Banner */}
+        <div className="pt-8 pb-6 border-t border-[#133021]/80">
           <p className="text-center text-[10.5px] sm:text-[11px] text-[#6E8A7B] font-light leading-relaxed max-w-4xl mx-auto px-4">
             Strict Compliance Note: Professional Experience &amp; Case Histories reflect direct professional and
             operational employment records, confidential client engagements, and structured advisory mandates executed
@@ -148,13 +153,61 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
         </div>
       </div>
 
-      {/* Floating "Buddy" Bizenra Companion Widget */}
-      <div className="fixed bottom-5 right-5 z-40">
+      {/* Floating "Advisory Buddy" Intelligence Widget (matching design specification) */}
+      <div className="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-2.5">
+        {/* Floating Speech / Intelligence Bubble */}
+        {bubbleOpen && (
+          <div className="w-[280px] sm:w-[310px] rounded-xl bg-[#061810]/95 border border-[#1A4B31] p-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.7)] backdrop-blur-md">
+            <div className="flex items-center justify-between pb-2 border-b border-[#143524] mb-2.5">
+              <span className="text-[10px] font-semibold tracking-[0.16em] text-[#C5A566] uppercase flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#34d399] inline-block animate-pulse" />
+                BIZENRA INTELLIGENCE
+              </span>
+              <button
+                type="button"
+                onClick={() => setBubbleOpen(false)}
+                className="text-[#6E8A7B] hover:text-[#FAF7F0] text-xs p-0.5 cursor-pointer"
+                aria-label="Close message"
+              >
+                ✕
+              </button>
+            </div>
+
+            <p className="text-xs text-[#E8EFEA] font-light leading-relaxed mb-3">
+              Hi, I&apos;m Buddy. What would you like to improve in your business today?
+            </p>
+
+            <div className="flex items-center gap-2 text-[11px]">
+              <button
+                type="button"
+                onClick={handleAction}
+                className="cursor-pointer px-2.5 py-1 rounded bg-[#133b27] border border-[#23583e] text-[#E8C87A] font-medium hover:bg-[#1b4e33] transition-colors"
+              >
+                Start Advisory Prompt
+              </button>
+              <button
+                type="button"
+                onClick={handleAction}
+                className="cursor-pointer px-2.5 py-1 rounded bg-[#082417] border border-[#1A4B31] text-[#FAF7F0] font-light hover:text-[#E8C87A] transition-colors"
+              >
+                Direct AI Partner
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Floating Pill Button */}
         <button
           type="button"
-          onClick={handleAction}
+          onClick={() => {
+            if (!bubbleOpen) {
+              setBubbleOpen(true);
+            } else {
+              handleAction();
+            }
+          }}
           className="flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-[#04140B]/95 border border-[#1A4B31] shadow-[0_8px_30px_rgba(0,0,0,0.6)] backdrop-blur-md hover:border-[#276445] transition-all duration-200 group cursor-pointer"
-          aria-label="Buddy - Bizenra Companion"
+          aria-label="Advisory Buddy"
         >
           <div className="w-6 h-6 rounded-full bg-[#082417] border border-[#22573B] flex items-center justify-center shrink-0">
             <svg
@@ -170,14 +223,9 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
               <path strokeLinecap="round" d="M12 4v3m-3-3h6" />
             </svg>
           </div>
-          <div className="text-left">
-            <div className="text-xs font-semibold text-white leading-tight">
-              Buddy
-            </div>
-            <div className="text-[10px] text-[#8EA396] font-light leading-none">
-              Bizenra Companion
-            </div>
-          </div>
+          <span className="text-xs font-medium text-[#FAF7F0] group-hover:text-[#E8C87A] transition-colors">
+            Advisory Buddy
+          </span>
         </button>
       </div>
     </footer>
