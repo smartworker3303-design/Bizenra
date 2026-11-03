@@ -756,6 +756,49 @@ export default function CaseHistoriesPage() {
 
           </section>
 
+          {/* 6. Guiding Principle Section (Pixel-accurate to design) */}
+          <section className="text-center pt-8 pb-4 sm:pt-12 sm:pb-6">
+            <div className="w-8 h-[2px] bg-[#C5A566] mx-auto mb-4" />
+            <span className="text-[11px] font-semibold tracking-[0.2em] text-[#C5A566] uppercase block mb-4">
+              GUIDING PRINCIPLE
+            </span>
+            <blockquote className="font-serif italic text-2xl sm:text-3xl lg:text-[34px] text-[#FAF7F0] font-normal leading-snug max-w-2xl mx-auto mb-4">
+              &ldquo;Strong teams thrive when expectations and systems are clear.&rdquo;
+            </blockquote>
+            <p className="text-xs sm:text-[13px] text-[#8EAFA0] font-light leading-relaxed max-w-xl mx-auto">
+              Bizenra People Practice Thesis: Clarified boundary systems produce unencumbered executive execution.
+            </p>
+          </section>
+
+          {/* 7. Verified Client Protocol Notice Banner (Pixel-accurate to design) */}
+          <section className="pt-2 pb-4">
+            <div className="rounded-xl bg-[#061810]/95 border border-[#153825] p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-5 shadow-xl">
+              <div className="flex items-start gap-4">
+                <div className="w-10 h-10 rounded-lg bg-[#E8C87A] text-[#05170F] flex items-center justify-center shrink-0 shadow-sm mt-0.5">
+                  <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="text-xs font-semibold tracking-[0.14em] text-[#FAF7F0] uppercase mb-1">
+                    VERIFIED CLIENT PROTOCOL NOTICE
+                  </h4>
+                  <p className="text-xs text-[#8EAFA0] font-light leading-relaxed max-w-2xl">
+                    Professional employment records and operational case histories reflect direct verified leadership mandates under strict non-disclosure safeguards. Non-speculative, zero fabricated figures.
+                  </p>
+                </div>
+              </div>
+
+              <Link
+                href="/about"
+                className="text-[11px] font-semibold tracking-[0.16em] text-[#C5A566] hover:text-[#FAF7F0] transition-colors uppercase flex items-center gap-1.5 shrink-0 self-start sm:self-center"
+              >
+                <span>AUDIT STANDARDS</span>
+                <span className="text-xs">&nearr;</span>
+              </Link>
+            </div>
+          </section>
+
         </div>
       </main>
 

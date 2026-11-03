@@ -2,12 +2,14 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface FooterProps {
   onOpenConsultation?: () => void;
 }
 
 export default function Footer({ onOpenConsultation }: FooterProps) {
+  const pathname = usePathname();
   const [bubbleOpen, setBubbleOpen] = useState(true);
 
   const practiceLinks = [
@@ -35,6 +37,8 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
       window.location.href = "/contact";
     }
   };
+
+  const isCaseHistories = pathname === "/case-histories";
 
   return (
     <footer className="w-full bg-[#030B07] border-t border-[#133021] text-[#A0B4A8] pt-16 pb-12 relative">
@@ -153,46 +157,121 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
         </div>
       </div>
 
-      {/* Floating "Advisory Buddy" Intelligence Widget (matching design specification) */}
+      {/* Floating Buddy Widget */}
       <div className="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-2.5">
         {/* Floating Speech / Intelligence Bubble */}
         {bubbleOpen && (
-          <div className="w-[280px] sm:w-[310px] rounded-xl bg-[#061810]/95 border border-[#1A4B31] p-3.5 shadow-[0_12px_40px_rgba(0,0,0,0.7)] backdrop-blur-md">
-            <div className="flex items-center justify-between pb-2 border-b border-[#143524] mb-2.5">
-              <span className="text-[10px] font-semibold tracking-[0.16em] text-[#C5A566] uppercase flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#34d399] inline-block animate-pulse" />
-                BIZENRA INTELLIGENCE
-              </span>
-              <button
-                type="button"
-                onClick={() => setBubbleOpen(false)}
-                className="text-[#6E8A7B] hover:text-[#FAF7F0] text-xs p-0.5 cursor-pointer"
-                aria-label="Close message"
-              >
-                ✕
-              </button>
-            </div>
+          <div className="w-[280px] sm:w-[320px] rounded-xl bg-[#061810]/95 border border-[#1A4B31] p-3.5 sm:p-4 shadow-[0_12px_40px_rgba(0,0,0,0.7)] backdrop-blur-md">
+            {isCaseHistories ? (
+              /* Case Histories Contextual Companion */
+              <div>
+                <div className="flex items-center justify-between pb-2 border-b border-[#143524] mb-2.5">
+                  <div className="flex items-center gap-2">
+                    <div className="w-5 h-5 rounded bg-[#0a2317] border border-[#18482f] flex items-center justify-center text-[#E8C87A]">
+                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                    <span className="text-[11px] text-[#7A9E8D] font-light">
+                      Virtual Brand Companion
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setBubbleOpen(false)}
+                    className="text-[#6E8A7B] hover:text-[#FAF7F0] text-xs p-0.5 cursor-pointer"
+                    aria-label="Close message"
+                  >
+                    ✕
+                  </button>
+                </div>
 
-            <p className="text-xs text-[#E8EFEA] font-light leading-relaxed mb-3">
-              Hi, I&apos;m Buddy. What would you like to improve in your business today?
-            </p>
+                <h4 className="text-xs sm:text-[13px] font-semibold text-[#FAF7F0] leading-snug mb-2">
+                  Ask Buddy about HR Standardization at Al Rauf
+                </h4>
 
-            <div className="flex items-center gap-2 text-[11px]">
-              <button
-                type="button"
-                onClick={handleAction}
-                className="cursor-pointer px-2.5 py-1 rounded bg-[#133b27] border border-[#23583e] text-[#E8C87A] font-medium hover:bg-[#1b4e33] transition-colors"
-              >
-                Start Advisory Prompt
-              </button>
-              <button
-                type="button"
-                onClick={handleAction}
-                className="cursor-pointer px-2.5 py-1 rounded bg-[#082417] border border-[#1A4B31] text-[#FAF7F0] font-light hover:text-[#E8C87A] transition-colors"
-              >
-                Direct AI Partner
-              </button>
-            </div>
+                <div className="border-l-2 border-[#E8C87A] pl-2.5 py-1 mb-3 bg-[#04120a]/80 rounded-r">
+                  <p className="font-serif italic text-xs text-[#8EAFA0] leading-relaxed">
+                    &ldquo;Strong teams thrive when expectations and systems are clear.&rdquo;
+                  </p>
+                </div>
+
+                <span className="text-[10px] font-semibold tracking-[0.16em] text-[#7A9E8D] uppercase block mb-2">
+                  CONTEXTUAL NAVIGATION
+                </span>
+
+                <div className="space-y-1.5 text-xs">
+                  <a
+                    href="#deep-dive"
+                    className="w-full px-3 py-2 rounded-md bg-[#FAF7F0] text-[#071911] font-medium flex items-center justify-between hover:bg-white transition-colors"
+                  >
+                    <span>10-Point Architectural Record</span>
+                    <span>&darr;</span>
+                  </a>
+                  <a
+                    href="#governance-matrix"
+                    className="w-full px-3 py-2 rounded-md bg-[#FAF7F0] text-[#071911] font-medium flex items-center justify-between hover:bg-white transition-colors"
+                  >
+                    <span>Verified Governance Outcomes</span>
+                    <span>&#9881;</span>
+                  </a>
+                  <Link
+                    href="/services"
+                    className="w-full px-3 py-2 rounded-md bg-[#FAF7F0] text-[#071911] font-medium flex items-center justify-between hover:bg-white transition-colors"
+                  >
+                    <span>HR Practice Overview</span>
+                    <span>&rarr;</span>
+                  </Link>
+                  <button
+                    type="button"
+                    onClick={handleAction}
+                    className="cursor-pointer w-full px-3 py-2 rounded-md bg-[#E8C87A] text-[#05170F] font-semibold flex items-center justify-between hover:bg-[#DEBE7F] transition-colors"
+                  >
+                    <span>Discuss Similar Challenge</span>
+                    <span>&#9655;</span>
+                  </button>
+                </div>
+              </div>
+            ) : (
+              /* General Advisor Intelligence Companion */
+              <div>
+                <div className="flex items-center justify-between pb-2 border-b border-[#143524] mb-2.5">
+                  <span className="text-[10px] font-semibold tracking-[0.16em] text-[#C5A566] uppercase flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#34d399] inline-block animate-pulse" />
+                    BIZENRA INTELLIGENCE
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setBubbleOpen(false)}
+                    className="text-[#6E8A7B] hover:text-[#FAF7F0] text-xs p-0.5 cursor-pointer"
+                    aria-label="Close message"
+                  >
+                    ✕
+                  </button>
+                </div>
+
+                <p className="text-xs text-[#E8EFEA] font-light leading-relaxed mb-3">
+                  Hi, I&apos;m Buddy. What would you like to improve in your business today?
+                </p>
+
+                <div className="flex items-center gap-2 text-[11px]">
+                  <button
+                    type="button"
+                    onClick={handleAction}
+                    className="cursor-pointer px-2.5 py-1 rounded bg-[#133b27] border border-[#23583e] text-[#E8C87A] font-medium hover:bg-[#1b4e33] transition-colors"
+                  >
+                    Start Advisory Prompt
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handleAction}
+                    className="cursor-pointer px-2.5 py-1 rounded bg-[#082417] border border-[#1A4B31] text-[#FAF7F0] font-light hover:text-[#E8C87A] transition-colors"
+                  >
+                    Direct AI Partner
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         )}
 
@@ -207,7 +286,7 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
             }
           }}
           className="flex items-center gap-2.5 px-3.5 py-2 rounded-xl bg-[#04140B]/95 border border-[#1A4B31] shadow-[0_8px_30px_rgba(0,0,0,0.6)] backdrop-blur-md hover:border-[#276445] transition-all duration-200 group cursor-pointer"
-          aria-label="Advisory Buddy"
+          aria-label={isCaseHistories ? "Bizenra Buddy" : "Advisory Buddy"}
         >
           <div className="w-6 h-6 rounded-full bg-[#082417] border border-[#22573B] flex items-center justify-center shrink-0">
             <svg
@@ -224,7 +303,7 @@ export default function Footer({ onOpenConsultation }: FooterProps) {
             </svg>
           </div>
           <span className="text-xs font-medium text-[#FAF7F0] group-hover:text-[#E8C87A] transition-colors">
-            Advisory Buddy
+            {isCaseHistories ? "Bizenra Buddy" : "Advisory Buddy"}
           </span>
         </button>
       </div>
