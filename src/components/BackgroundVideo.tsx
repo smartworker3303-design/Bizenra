@@ -1,12 +1,16 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
 
 export default function BackgroundVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+
+  const markVideoActive = useCallback(() => {
+    setIsVideoLoaded(true);
+  }, []);
 
   useEffect(() => {
     setIsMounted(true);
@@ -17,39 +21,45 @@ export default function BackgroundVideo() {
     const video = videoRef.current;
     if (!video) return;
 
-    // Explicitly guarantee muted is set so browsers permit autoplay
+    // Explicitly guarantee muted is set so browsers permit instant autoplay
     video.muted = true;
+
+    // Check if video is already ready or playing
+    if (video.readyState >= 2 || (!video.paused && !video.ended)) {
+      markVideoActive();
+    }
+
     const playPromise = video.play();
     if (playPromise !== undefined) {
       playPromise
         .then(() => {
-          setIsVideoLoaded(true);
+          markVideoActive();
         })
         .catch(() => {
-          // Autoplay was prevented or device is in low-power mode; poster will display seamlessly
+          // Fallback silently if power-saving prevents autoplay; poster image remains seamless
         });
     }
-  }, [isMounted]);
+  }, [isMounted, markVideoActive]);
 
   return (
     <div
       aria-hidden="true"
       className="fixed inset-0 w-screen h-screen -z-20 overflow-hidden pointer-events-none select-none"
     >
-      {/* 1. Instant Poster Fallback Image (Prevents any flash of black/empty space while video buffers) */}
+      {/* 1. Instant Poster Fallback Image (Prevents any flash while video initializes) */}
       <Image
         src="/forest-bg.jpg"
         alt="Dark Evergreen Forest Canopy"
         fill
         priority
         sizes="100vw"
-        className={`object-cover object-center scale-[1.01] transition-opacity duration-1000 ${
+        className={`object-cover object-center scale-[1.01] transition-opacity duration-1000 ease-out ${
           isVideoLoaded ? "opacity-0" : "opacity-100"
         }`}
       />
 
-      {/* 2. Responsive 4K Forest Video Background */}
-      {/* Rendered on mount with suppressHydrationWarning to insulate from browser extensions injecting classes */}
+      {/* 2. Responsive Forest Video Background with Instant FastStart Streaming */}
+      {/* Rendered on mount with suppressHydrationWarning to insulate from browser extensions */}
       {isMounted && (
         <video
           ref={videoRef}
@@ -60,14 +70,18 @@ export default function BackgroundVideo() {
           preload="auto"
           poster="/forest-bg.jpg"
           suppressHydrationWarning
-          onLoadedData={() => setIsVideoLoaded(true)}
-          className="absolute inset-0 w-full h-full object-cover object-center"
+          onCanPlay={markVideoActive}
+          onPlaying={markVideoActive}
+          onLoadedData={markVideoActive}
+          onTimeUpdate={() => {
+            if (!isVideoLoaded) markVideoActive();
+          }}
+          className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-700 ease-out ${
+            isVideoLoaded ? "opacity-100" : "opacity-0"
+          }`}
         >
+          <source src="/forest-video.webm" type="video/webm" />
           <source src="/forest-video.mp4" type="video/mp4" />
-          <source
-            src="/Dark%20Green%20Forest%20(GIF)%20background%20__%204k%2B60%20fps.mp4"
-            type="video/mp4"
-          />
         </video>
       )}
 
