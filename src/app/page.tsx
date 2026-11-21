@@ -21,13 +21,11 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen flex flex-col text-[#E8EFEA] antialiased selection:bg-[#E8C87A] selection:text-[#040D08]">
-
-
       {/* Top Navigation */}
       <Navbar onOpenConsultation={() => setConsultationOpen(true)} />
 
-      {/* Main Home Page Content */}
-      <main className="relative flex-1 space-y-12 sm:space-y-16 pb-12 sm:pb-20">
+      {/* Main Home Page Content with overflow-x-clip to prevent any animation scrollbar leaks */}
+      <main className="relative flex-1 space-y-12 sm:space-y-16 pb-12 sm:pb-20 overflow-x-clip">
         {/* 1. Hero Section */}
         <Hero onOpenConsultation={() => setConsultationOpen(true)} />
 

@@ -1,5 +1,7 @@
 "use client";
 
+import ScrollReveal, { RevealDirection } from "@/components/ScrollReveal";
+
 interface HeroProps {
   onOpenConsultation?: () => void;
 }
@@ -11,6 +13,8 @@ export default function Hero({ onOpenConsultation }: HeroProps) {
     { value: "7 Pillars", label: "END-TO-END ENTERPRISE FLOW" },
     { value: "100%", label: "VERIFIED CASE HISTORY" },
   ];
+
+  const statDirections: RevealDirection[] = ["left", "top", "bottom", "right"];
 
   const handleScrollToWork = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -67,17 +71,25 @@ export default function Hero({ onOpenConsultation }: HeroProps) {
           </a>
         </div>
 
-        {/* 4 Metrics / Stats Row */}
+        {/* 4 Metrics / Stats Row with Staggered Multi-directional Reveal */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-8 border-t border-[#1C4A33]/70">
           {stats.map((stat, idx) => (
-            <div key={idx} className="flex flex-col space-y-1.5">
-              <span className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-normal text-[#F3DA96] leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
-                {stat.value}
-              </span>
-              <span className="text-[10.5px] sm:text-[11.5px] font-sans font-semibold tracking-[0.16em] text-[#A8CCBA] uppercase drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
-                {stat.label}
-              </span>
-            </div>
+            <ScrollReveal
+              key={idx}
+              direction={statDirections[idx % statDirections.length]}
+              delay={idx * 100}
+              distance={35}
+              duration={750}
+            >
+              <div className="flex flex-col space-y-1.5">
+                <span className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-normal text-[#F3DA96] leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+                  {stat.value}
+                </span>
+                <span className="text-[10.5px] sm:text-[11.5px] font-sans font-semibold tracking-[0.16em] text-[#A8CCBA] uppercase drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]">
+                  {stat.label}
+                </span>
+              </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

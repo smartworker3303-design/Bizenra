@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export interface CaseStudy {
   id: string;
@@ -162,9 +163,10 @@ export default function CaseHistoriesSection({ onSelectCase }: CaseHistoriesSect
   return (
     <section
       id="case-histories"
-      className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8"
+      className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 overflow-hidden"
     >
-      <div className="rounded-[28px] sm:rounded-[36px] bg-[#040E08]/85 border border-[#173D29]/75 p-6 sm:p-9 lg:p-11 shadow-[0_12px_44px_rgba(0,0,0,0.7)] backdrop-blur-md">
+      <ScrollReveal direction="left" distance={50} duration={850}>
+        <div className="rounded-[28px] sm:rounded-[36px] bg-[#040E08]/85 border border-[#173D29]/75 p-6 sm:p-9 lg:p-11 shadow-[0_12px_44px_rgba(0,0,0,0.7)] backdrop-blur-md">
         {/* Section Header with Carousel Controls */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-[#143524]/80">
           <div className="max-w-2xl">
@@ -424,7 +426,8 @@ export default function CaseHistoriesSection({ onSelectCase }: CaseHistoriesSect
             </div>
           </div>
         </div>
-      </div>
+        </div>
+      </ScrollReveal>
     </section>
   );
 }

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import ScrollReveal from "@/components/ScrollReveal";
 
 interface FocusArea {
   id: number;
@@ -260,8 +261,9 @@ export default function FocusAreasSection({ onOpenConsultation }: FocusAreasSect
   const prev = () => setActiveIndex((prev) => (prev - 1 + practices.length) % practices.length);
 
   return (
-    <section id="focus-areas" className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
-      <div className="rounded-[28px] sm:rounded-[36px] bg-[#040E08]/85 border border-[#173D29]/75 p-6 sm:p-9 lg:p-11 shadow-[0_12px_44px_rgba(0,0,0,0.7)] backdrop-blur-md">
+    <section id="focus-areas" className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 overflow-hidden">
+      <ScrollReveal direction="right" distance={50} duration={850}>
+        <div className="rounded-[28px] sm:rounded-[36px] bg-[#040E08]/85 border border-[#173D29]/75 p-6 sm:p-9 lg:p-11 shadow-[0_12px_44px_rgba(0,0,0,0.7)] backdrop-blur-md">
         {/* Section Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-[#143524]/80">
           <div className="max-w-2xl">
@@ -508,7 +510,8 @@ export default function FocusAreasSection({ onOpenConsultation }: FocusAreasSect
             </div>
           </div>
         </div>
-      </div>
+        </div>
+      </ScrollReveal>
     </section>
   );
 }
