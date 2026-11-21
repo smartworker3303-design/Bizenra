@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -11,6 +11,20 @@ interface NavbarProps {
 export default function Navbar({ onOpenConsultation }: NavbarProps) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 380);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const isHomepage = pathname === "/";
+  // On homepage, only show navbar CTA after scrolling past the hero to prevent duplication on screen
+  const showNavbarCTA = !isHomepage || isScrolled;
 
   const navLinks = [
     { label: "Home", href: "/" },
@@ -56,13 +70,15 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
 
         {/* Right Action Buttons */}
         <div className="hidden sm:flex items-center space-x-3.5">
-          <button
-            onClick={onOpenConsultation}
-            type="button"
-            className="cursor-pointer px-5 py-2.5 rounded bg-[#E8C87A] text-[#05160E] text-[13px] font-semibold tracking-wide hover:bg-[#F3DA96] active:scale-[0.98] transition-all shadow-[0_2px_12px_rgba(232,200,122,0.22)]"
-          >
-            Book a Consultation
-          </button>
+          {showNavbarCTA && (
+            <button
+              onClick={onOpenConsultation}
+              type="button"
+              className="cursor-pointer px-5 py-2.5 rounded bg-[#E8C87A] text-[#05160E] text-[13px] font-semibold tracking-wide hover:bg-[#F3DA96] active:scale-[0.98] transition-all shadow-[0_2px_12px_rgba(232,200,122,0.22)]"
+            >
+              Book a Consultation
+            </button>
+          )}
 
           {/* User / Profile Icon Button */}
           <button
@@ -88,13 +104,15 @@ export default function Navbar({ onOpenConsultation }: NavbarProps) {
 
         {/* Mobile Hamburger Button */}
         <div className="flex sm:hidden items-center space-x-2">
-          <button
-            onClick={onOpenConsultation}
-            type="button"
-            className="cursor-pointer px-3 py-1.5 rounded bg-[#E8C87A] text-[#05160E] text-[11px] font-semibold tracking-wide"
-          >
-            Consult
-          </button>
+          {showNavbarCTA && (
+            <button
+              onClick={onOpenConsultation}
+              type="button"
+              className="cursor-pointer px-3 py-1.5 rounded bg-[#E8C87A] text-[#05160E] text-[11px] font-semibold tracking-wide"
+            >
+              Consult
+            </button>
+          )}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             type="button"

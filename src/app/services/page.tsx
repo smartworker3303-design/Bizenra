@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -38,6 +38,24 @@ export default function ServicesPage() {
   const [selectedCase, setSelectedCase] = useState<CaseStudy | null>(null);
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [quoteVisible, setQuoteVisible] = useState(true);
+
+  // Auto-select practice pillar if navigated from carousel link (e.g. #service-3)
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const hash = window.location.hash;
+      const match = hash.match(/#service-(\d+)/);
+      if (match) {
+        const tabNum = parseInt(match[1], 10);
+        if (tabNum >= 1 && tabNum <= 7) {
+          setActiveTab(tabNum);
+          setTimeout(() => {
+            const el = document.getElementById("service-pillar") || document.getElementById("practice-selector");
+            if (el) el.scrollIntoView({ behavior: "smooth" });
+          }, 150);
+        }
+      }
+    }
+  }, []);
 
   // Diagnostic form state
   const [intakeName, setIntakeName] = useState("");

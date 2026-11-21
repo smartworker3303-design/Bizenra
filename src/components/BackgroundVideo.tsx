@@ -67,7 +67,7 @@ export default function BackgroundVideo() {
           loop
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
           poster="/forest-bg.jpg"
           suppressHydrationWarning
           onCanPlay={markVideoActive}

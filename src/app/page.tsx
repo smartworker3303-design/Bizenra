@@ -43,7 +43,7 @@ export default function Home() {
         {/* 5. Core Competencies ("What We Focus On") */}
         <FocusAreasSection onOpenConsultation={() => setConsultationOpen(true)} />
 
-        {/* 6. The Bizenra Distinction ("Why Founders Partner With Bizenra") */}
+        {/* 6. The Bizenra Distinction ("Why Choose Bizenra") */}
         <WhyPartnerSection />
 
         {/* 7. Advisory Knowledge Base ("Selected Business Insights") */}

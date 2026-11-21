@@ -48,8 +48,7 @@ export default function WhyPartnerSection() {
                 THE BIZENRA DISTINCTION
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-[42px] font-normal text-[#FFFFFF] leading-[1.15] mb-4 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-                Why Founders Partner <br className="hidden sm:inline" />
-                With Bizenra
+                Why Choose Bizenra
               </h2>
               <p className="text-[#A3B8AC] text-sm sm:text-[14.5px] font-light leading-relaxed">
                 We operate without the bloated overhead of conventional consultancies and without the high-altitude
